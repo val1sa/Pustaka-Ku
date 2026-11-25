@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PustakaKu
 
-## Getting Started
+Aplikasi pencatatan buku perpustakaan SMA, dibuat dengan Next.js App Router,
+TypeScript, Tailwind CSS, Prisma 6, dan SQLite.
 
-First, run the development server:
+## Menjalankan aplikasi
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Pasang dependensi:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   npm install
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Pastikan `.env` di root proyek berisi:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```env
+   DATABASE_URL="file:./dev.db"
+   ```
 
-## Learn More
+   File database dibuat di `prisma/dev.db`.
 
-To learn more about Next.js, take a look at the following resources:
+3. Buat tabel dan isi data contoh:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npx prisma migrate dev --name init
+   npx prisma db seed
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Jalankan aplikasi:
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Buka [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Halaman
+
+- `/` — landing page
+- `/buku` — daftar buku dan pencarian berdasarkan judul atau penulis
+- `/buku/[id]` — detail buku
+- `/buku/baru` — form untuk menambahkan buku
+
